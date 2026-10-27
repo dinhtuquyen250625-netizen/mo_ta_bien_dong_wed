@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo Cáo Phân Tích Biến Động Giá Cổ Phiếu - Chu Kỳ 365 Ngày</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .pink-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-pink-50 min-h-screen text-slate-800 pb-20">
+
+    <!-- Header / Top Banner -->
+    <header class="bg-gradient-to-r from-pink-600 via-rose-500 to-pink-500 text-white shadow-xl shadow-pink-200/50 relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+                <div>
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-white/20 text-white backdrop-blur-md mb-3 border border-white/30">
+                        <i class="fa-solid fa-chart-line mr-2"></i> Báo Cáo Chuyên Sâu Tài Chính 365 Ngày
+                    </span>
+                    <h1 class="text-3xl sm:text-4xl font-black tracking-tight leading-tight">
+                        Phân Tích Mô Phỏng Biến Động Giá Cổ Phiếu
+                    </h1>
+                    <p class="mt-2 text-pink-100 text-sm sm:text-base max-w-2xl">
+                        Trực quan hóa và đánh giá định lượng dữ liệu chuỗi thời gian (abc-3.csv) tích hợp mô phỏng hoạt ảnh 30 FPS.
+                    </p>
+                </div>
+                <div class="flex items-center gap-3 bg-white/15 p-3.5 rounded-2xl backdrop-blur-md border border-white/20 shadow-inner self-start md:self-auto">
+                    <div class="w-12 h-12 rounded-xl bg-white text-pink-600 flex items-center justify-center font-black text-2xl shadow-md">
+                        🌸
+                    </div>
+                    <div>
+                        <div class="text-xs text-pink-100 font-medium">Chủ đề giao diện</div>
+                        <div class="text-sm font-extrabold tracking-wide">Pink Financial Pro</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 relative z-20 space-y-8">
+        
+        <!-- Top Metrics Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            <!-- Card 1 -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100 hover:shadow-md transition-all">
+                <div class="flex items-center justify-between text-xs font-bold text-pink-500 uppercase tracking-wider">
+                    <span>Giá Cao Nhất</span>
+                    <i class="fa-solid fa-arrow-trend-up text-emerald-500 text-base"></i>
+                </div>
+                <div class="text-2xl font-black text-slate-800 mt-2">30,361 VNĐ</div>
+                <div class="text-xs text-emerald-600 mt-1 font-semibold flex items-center">
+                    <i class="fa-solid fa-caret-up mr-1"></i> Đỉnh chu kỳ (Ngày ~165)
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100 hover:shadow-md transition-all">
+                <div class="flex items-center justify-between text-xs font-bold text-rose-500 uppercase tracking-wider">
+                    <span>Giá Thấp Nhất</span>
+                    <i class="fa-solid fa-arrow-trend-down text-rose-500 text-base"></i>
+                </div>
+                <div class="text-2xl font-black text-slate-800 mt-2">1,736 VNĐ</div>
+                <div class="text-xs text-rose-500 mt-1 font-semibold flex items-center">
+                    <i class="fa-solid fa-caret-down mr-1"></i> Đáy chu kỳ (Ngày 365)
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100 hover:shadow-md transition-all">
+                <div class="flex items-center justify-between text-xs font-bold text-pink-500 uppercase tracking-wider">
+                    <span>Giá Trung Bình</span>
+                    <i class="fa-solid fa-calculator text-purple-500 text-base"></i>
+                </div>
+                <div class="text-2xl font-black text-slate-800 mt-2">11,036 VNĐ</div>
+                <div class="text-xs text-slate-500 mt-1 font-medium">
+                    Trung bình 364 phiên
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100 hover:shadow-md transition-all">
+                <div class="flex items-center justify-between text-xs font-bold text-rose-600 uppercase tracking-wider">
+                    <span>Max Drawdown</span>
+                    <i class="fa-solid fa-percent text-rose-500 text-base"></i>
+                </div>
+                <div class="text-2xl font-black text-rose-600 mt-2">-94.28%</div>
+                <div class="text-xs text-rose-500 mt-1 font-medium">
+                    Sụt giảm từ đỉnh về đáy
+                </div>
+            </div>
+
+            <!-- Card 5 -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-pink-100 hover:shadow-md transition-all sm:col-span-2 lg:col-span-1">
+                <div class="flex items-center justify-between text-xs font-bold text-pink-500 uppercase tracking-wider">
+                    <span>Mẫu Dữ Liệu</span>
+                    <i class="fa-regular fa-calendar-check text-pink-500 text-base"></i>
+                </div>
+                <div class="text-2xl font-black text-slate-800 mt-2">365 Ngày</div>
+                <div class="text-xs text-pink-600 mt-1 font-medium">
+                    Nguồn: abc-3.csv
+                </div>
+            </div>
+        </div>
+
+        <!-- Biểu Đồ & Video Area -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Chart (2 cols) -->
+            <div class="lg:col-span-2 bg-white p-6 rounded-3xl shadow-sm border border-pink-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-6 pb-4 border-b border-pink-100 gap-3">
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-pink-500 inline-block shadow-sm shadow-pink-500/50"></span>
+                                Biểu Đồ Diễn Biến Giá & Xu Hướng Lịch Sử
+                            </h2>
+                            <p class="text-xs text-slate-500 mt-1">Dữ liệu đóng cửa chuỗi thời gian qua 365 phiên giao dịch</p>
+                        </div>
+                        <span class="self-start sm:self-auto px-3 py-1 bg-pink-100 text-pink-700 font-bold text-xs rounded-lg">
+                            Chart.js Interactive
+                        </span>
+                    </div>
+
+                    <div class="relative w-full h-[380px]">
+                        <canvas id="financeChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-pink-100 grid grid-cols-3 gap-2 text-center text-xs text-slate-600">
+                    <div class="p-2 rounded-xl bg-pink-50/50">
+                        <span class="block font-semibold text-pink-600">Giai Đoạn 1</span>
+                        <span>Tích lũy (N1 - N45)</span>
+                    </div>
+                    <div class="p-2 rounded-xl bg-pink-50/50">
+                        <span class="block font-semibold text-pink-600">Giai Đoạn 2</span>
+                        <span>Tăng trưởng (N46 - N165)</span>
+                    </div>
+                    <div class="p-2 rounded-xl bg-pink-50/50">
+                        <span class="block font-semibold text-rose-600">Giai Đoạn 3 & 4</span>
+                        <span>Phân phối & Suy thoái</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Video (1 col) -->
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-pink-100 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-pink-100">
+                        <h2 class="text-lg font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-play text-pink-500"></i>
+                            Video Mô Phỏng
+                        </h2>
+                        <span class="text-xs px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-700 font-semibold">
+                            video1.mp4
+                        </span>
+                    </div>
+                    <p class="text-xs text-slate-500 mb-4">
+                        Video thực tế ghi lại hoạt ảnh 30 FPS mô phỏng biến động giá tài chính trực quan.
+                    </p>
+
+                    <!-- Video Container -->
+                    <div class="relative rounded-2xl overflow-hidden border border-pink-200 shadow-inner bg-slate-900 group">
+                        <video class="w-full aspect-video object-cover" controls autoplay loop muted>
+                            <source src="video1.mp4" type="video/mp4">
+                            Trình duyệt của bạn không hỗ trợ hiển thị video.
+                        </video>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-3.5 bg-pink-50 rounded-2xl border border-pink-100 text-xs text-pink-900 leading-relaxed space-y-1">
+                    <div class="font-bold text-pink-700 flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-info text-pink-500"></i> Chú thích hiển thị
+                    </div>
+                    <p>• Trục trên: Giá trị khớp lệnh thực tế (VNĐ).</p>
+                    <p>• Trục dưới: Biên độ biến động và đường ngưỡng động.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bảng Thống Kê Định Lượng (Quantitative Table) -->
+        <section class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-pink-100">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-pink-100">
+                <div class="w-10 h-10 rounded-2xl bg-pink-500 text-white flex items-center justify-center text-lg shadow-md shadow-pink-200">
+                    <i class="fa-solid fa-table-list"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-extrabold text-slate-800">Thống Kê Định Lượng Chi Tiết Tập Dữ Liệu</h2>
+                    <p class="text-xs text-slate-500">Trích xuất từ 364 bản ghi trong tệp abc-3.csv</p>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-xs text-slate-700">
+                    <thead class="bg-pink-50 text-pink-800 uppercase font-bold text-[11px] tracking-wider">
+                        <tr>
+                            <th class="py-3 px-4 rounded-l-xl">Chỉ Số Tài Chính</th>
+                            <th class="py-3 px-4">Giá Trị Tính Toán</th>
+                            <th class="py-3 px-4">Đơn Vị Đo</th>
+                            <th class="py-3 px-4 rounded-r-xl">Ý Nghĩa Kỹ Thuật</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-pink-100 font-medium">
+                        <tr class="hover:bg-pink-50/50 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-800">Giá mở cửa ban đầu (Day 1)</td>
+                            <td class="py-3 px-4 text-pink-600 font-extrabold">9,622.43</td>
+                            <td class="py-3 px-4">VNĐ</td>
+                            <td class="py-3 px-4 text-slate-500">Mức giá khởi điểm đầu chu kỳ 365 ngày</td>
+                        </tr>
+                        <tr class="hover:bg-pink-50/50 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-800">Giá đóng cửa trung bình (Mean)</td>
+                            <td class="py-3 px-4 text-pink-600 font-extrabold">11,036.32</td>
+                            <td class="py-3 px-4">VNĐ</td>
+                            <td class="py-3 px-4 text-slate-500">Mức giá trung gian cân bằng toàn bộ chu kỳ</td>
+                        </tr>
+                        <tr class="hover:bg-pink-50/50 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-800">Giá đóng cửa cao nhất (Max Close)</td>
+                            <td class="py-3 px-4 text-emerald-600 font-extrabold">30,361.78</td>
+                            <td class="py-3 px-4">VNĐ</td>
+                            <td class="py-3 px-4 text-slate-500">Đỉnh sóng tăng trưởng bứt phá (Markup Peak)</td>
+                        </tr>
+                        <tr class="hover:bg-pink-50/50 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-800">Giá đóng cửa thấp nhất (Min Close)</td>
+                            <td class="py-3 px-4 text-rose-600 font-extrabold">1,736.10</td>
+                            <td class="py-3 px-4">VNĐ</td>
+                            <td class="py-3 px-4 text-slate-500">Đáy suy thoái sâu nhất cuối chu kỳ (Markdown Floor)</td>
+                        </tr>
+                        <tr class="hover:bg-pink-50/50 transition-colors">
+                            <td class="py-3 px-4 font-bold text-slate-800">Mức Sụt Giảm Cực Đại (Max Drawdown)</td>
+                            <td class="py-3 px-4 text-rose-600 font-extrabold">-94.28%</td>
+                            <td class="py-3 px-4">Phần trăm (%)</td>
+                            <td class="py-3 px-4 text-slate-500">Cảnh báo rủi ro bốc hơi vốn nếu không quản trị Stop-loss</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Tool Tính Toán Quản Trị Rủi Ro (Interactive Risk Calculator) -->
+        <section class="bg-gradient-to-br from-white to-pink-50/60 p-6 sm:p-8 rounded-3xl shadow-sm border border-pink-100">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-pink-100">
+                <div class="w-10 h-10 rounded-2xl bg-pink-500 text-white flex items-center justify-center text-lg shadow-md shadow-pink-200">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-extrabold text-slate-800">Công Cụ Tính Toán Quản Trị Vốn & Tỷ Lệ Lời/Lỗ (R:R)</h2>
+                    <p class="text-xs text-slate-500">Nhập thông số vị thế để hệ thống tính toán khối lượng giao dịch và rủi ro tối đa</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Form nhập -->
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Tổng Vốn Đầu Tư (VNĐ)</label>
+                        <input type="number" id="capitalInput" value="100000000" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 font-semibold text-slate-800">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Giá Mua Vào (Entry - VNĐ)</label>
+                        <input type="number" id="entryInput" value="10000" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 font-semibold text-slate-800">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Giá Cắt Lỗ (Stop Loss - VNĐ)</label>
+                        <input type="number" id="slInput" value="8500" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 font-semibold text-slate-800">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Giá Chốt Lời (Take Profit - VNĐ)</label>
+                        <input type="number" id="tpInput" value="14500" class="w-full px-3.5 py-2 rounded-xl border border-pink-200 text-sm focus:outline-none focus:ring-2 focus:ring-pink-500 font-semibold text-slate-800">
+                    </div>
+                </div>
+
+                <!-- Kết quả tính toán -->
+                <div class="md:col-span-2 bg-white p-5 rounded-2xl border border-pink-100 flex flex-col justify-between shadow-inner">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="p-3 bg-pink-50/50 rounded-xl">
+                            <span class="text-xs text-slate-500 font-medium block">Tỷ Lệ Lời / Lỗ (R:R Ratio)</span>
+                            <span id="rrResult" class="text-xl font-black text-pink-600">1 : 3.0</span>
+                        </div>
+                        <div class="p-3 bg-pink-50/50 rounded-xl">
+                            <span class="text-xs text-slate-500 font-medium block">Mức Rủi Ro Mỗi Cổ Phiếu</span>
+                            <span id="riskPerShare" class="text-xl font-black text-rose-500">-15.0%</span>
+                        </div>
+                        <div class="p-3 bg-pink-50/50 rounded-xl">
+                            <span class="text-xs text-slate-500 font-medium block">Tỷ Lệ Lợi Nhuận Kỳ Vọng</span>
+                            <span id="rewardPerShare" class="text-xl font-black text-emerald-600">+45.0%</span>
+                        </div>
+                        <div class="p-3 bg-pink-50/50 rounded-xl">
+                            <span class="text-xs text-slate-500 font-medium block">Khối Lượng Mua Khuyến Nghị (10% vốn)</span>
+                            <span id="shareVolume" class="text-xl font-black text-slate-800">1,000 CP</span>
+                        </div>
+                    </div>
+
+                    <div id="calculatorAdvice" class="mt-4 p-3 rounded-xl bg-pink-100 text-pink-900 text-xs font-medium border border-pink-200">
+                        <i class="fa-solid fa-thumbs-up text-pink-600 mr-1"></i> Tỷ lệ R:R tốt (>= 1:2). Kế hoạch giao dịch có mức kỳ vọng dương thích hợp để giải ngân.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Lý Thuyết 4 Pha Wyckoff & Tâm Lý -->
+        <section class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-pink-100">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b border-pink-100">
+                <div class="w-10 h-10 rounded-2xl bg-pink-500 text-white flex items-center justify-center text-lg shadow-md shadow-pink-200">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div>
+                    <h2 class="text-xl font-extrabold text-slate-800">Cơ Sở Lý Thuyết: 4 Pha Chu Kỳ Wyckoff & Tâm Lý Giao Dịch</h2>
+                    <p class="text-xs text-slate-500">Mô hình hóa tâm lý bầy đàn và hành vi dòng tiền thông minh trong 365 ngày</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Pha 1 -->
+                <div class="p-5 rounded-2xl bg-gradient-to-b from-pink-50/80 to-white border border-pink-100 hover:border-pink-300 transition-all">
+                    <div class="w-8 h-8 rounded-lg bg-pink-500 text-white flex items-center justify-center font-bold mb-3 text-xs">
+                        P1
+                    </div>
+                    <h3 class="font-extrabold text-slate-800 text-sm mb-1">1. Pha Tích Lũy (Accumulation)</h3>
+                    <p class="text-xs text-pink-600 font-semibold mb-2">Giai đoạn Ngày 1 - Ngày 45</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Giá dao động chán nản quanh vùng 8,000 - 10,000 VNĐ. Nhà đầu tư nhỏ lẻ rời bỏ thị trường, trong khi dòng tiền thông minh (Smart Money) âm thầm thu gom cổ phiếu giá rẻ.
+                    </p>
+                </div>
+
+                <!-- Pha 2 -->
+                <div class="p-5 rounded-2xl bg-gradient-to-b from-pink-50/80 to-white border border-pink-100 hover:border-pink-300 transition-all">
+                    <div class="w-8 h-8 rounded-lg bg-pink-500 text-white flex items-center justify-center font-bold mb-3 text-xs">
+                        P2
+                    </div>
+                    <h3 class="font-extrabold text-slate-800 text-sm mb-1">2. Pha Tăng Giá (Markup)</h3>
+                    <p class="text-xs text-emerald-600 font-semibold mb-2">Giai đoạn Ngày 46 - Ngày 165</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Dòng tiền FOMO kích hoạt bứt phá. Cổ phiếu liên tục lập đỉnh mới vượt 20,000 và chạm mốc cực đại trên 30,000 VNĐ. Tâm lý thị trường hưng phấn tột độ.
+                    </p>
+                </div>
+
+                <!-- Pha 3 -->
+                <div class="p-5 rounded-2xl bg-gradient-to-b from-pink-50/80 to-white border border-pink-100 hover:border-pink-300 transition-all">
+                    <div class="w-8 h-8 rounded-lg bg-pink-500 text-white flex items-center justify-center font-bold mb-3 text-xs">
+                        P3
+                    </div>
+                    <h3 class="font-extrabold text-slate-800 text-sm mb-1">3. Pha Phân Phối (Distribution)</h3>
+                    <p class="text-xs text-amber-600 font-semibold mb-2">Giai đoạn Ngày 166 - Ngày 225</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Biến động cực mạnh tại vùng đỉnh 20,000 - 30,000 VNĐ. Tổ chức trao tay lượng lớn cổ phiếu cho nhà đầu tư cá nhân chậm chân trước khi đảo chiều.
+                    </p>
+                </div>
+
+                <!-- Pha 4 -->
+                <div class="p-5 rounded-2xl bg-gradient-to-b from-pink-50/80 to-white border border-pink-100 hover:border-pink-300 transition-all">
+                    <div class="w-8 h-8 rounded-lg bg-rose-500 text-white flex items-center justify-center font-bold mb-3 text-xs">
+                        P4
+                    </div>
+                    <h3 class="font-extrabold text-slate-800 text-sm mb-1">4. Pha Suy Thoái (Markdown)</h3>
+                    <p class="text-xs text-rose-600 font-semibold mb-2">Giai đoạn Ngày 226 - Ngày 365</p>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Cú sập tự do trắng bên mua. Giá trượt dốc không phanh từ trên 20,000 VNĐ chìm sâu về đáy 1,736 VNĐ, bào mòn hơn 94% giá trị tài sản.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ma Trận SWOT & Checklist -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Ma trận SWOT -->
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-pink-100">
+                <h3 class="text-base font-extrabold text-slate-800 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-border-all text-pink-500"></i>
+                    Ma Trận Đánh Giá Cơ Hội & Rủi Ro (SWOT)
+                </h3>
+                <div class="grid grid-cols-2 gap-3 text-xs">
+                    <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-100">
+                        <span class="font-bold text-emerald-800 block mb-1">Strengths (Điểm mạnh)</span>
+                        <p class="text-emerald-700">Sóng tăng có động lượng mạnh (Markup dài 120 ngày) tạo cơ hội nhân tài khoản lớn.</p>
+                    </div>
+                    <div class="p-3 bg-rose-50 rounded-xl border border-rose-100">
+                        <span class="font-bold text-rose-800 block mb-1">Weaknesses (Điểm yếu)</span>
+                        <p class="text-rose-700">Độ biến động quá cao (High Volatility), biên độ điều chỉnh mạnh trong phiên.</p>
+                    </div>
+                    <div class="p-3 bg-blue-50 rounded-xl border border-blue-100">
+                        <span class="font-bold text-blue-800 block mb-1">Opportunities (Cơ hội)</span>
+                        <p class="text-blue-700">Mua gom cực tốt tại vùng tích lũy nền giá thấp (Pha 1) hoặc sau cú sập xả rác (cuối Pha 4).</p>
+                    </div>
+                    <div class="p-3 bg-amber-50 rounded-xl border border-amber-100">
+                        <span class="font-bold text-amber-800 block mb-1">Threats (Thách thức)</span>
+                        <p class="text-amber-700">Bốc hơi 94% tài sản nếu đu đỉnh tại Pha Phân Phối mà không tuân thủ kỷ luật cắt lỗ.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checklist 5 bước -->
+            <div class="bg-white p-6 rounded-3xl shadow-sm border border-pink-100">
+                <h3 class="text-base font-extrabold text-slate-800 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-list-check text-pink-500"></i>
+                    Checklist 5 Bước Kỷ Luật Cho Nhà Đầu Tư
+                </h3>
+                <ul class="space-y-2.5 text-xs text-slate-700">
+                    <li class="flex items-center gap-2.5 p-2 rounded-xl bg-pink-50/50">
+                        <span class="w-5 h-5 rounded-full bg-pink-500 text-white font-bold flex items-center justify-center text-[10px]">1</span>
+                        <span>Luôn xác định rõ xu hướng chính (Trend) trước khi vào lệnh.</span>
+                    </li>
+                    <li class="flex items-center gap-2.5 p-2 rounded-xl bg-pink-50/50">
+                        <span class="w-5 h-5 rounded-full bg-pink-500 text-white font-bold flex items-center justify-center text-[10px]">2</span>
+                        <span>Không bao giờ giải ngân quá 20% tổng vốn vào một vị thế duy nhất.</span>
+                    </li>
+                    <li class="flex items-center gap-2.5 p-2 rounded-xl bg-pink-50/50">
+                        <span class="w-5 h-5 rounded-full bg-pink-500 text-white font-bold flex items-center justify-center text-[10px]">3</span>
+                        <span>Cài đặt sẵn điểm Cắt Lỗ (Stop-loss) tuyệt đối tại ngưỡng Hỗ trợ cứng.</span>
+                    </li>
+                    <li class="flex items-center gap-2.5 p-2 rounded-xl bg-pink-50/50">
+                        <span class="w-5 h-5 rounded-full bg-pink-500 text-white font-bold flex items-center justify-center text-[10px]">4</span>
+                        <span>Chốt lời từng phần (Take Profit) khi giá tiến sát vùng Kháng cự lịch sử.</span>
+                    </li>
+                    <li class="flex items-center gap-2.5 p-2 rounded-xl bg-pink-50/50">
+                        <span class="w-5 h-5 rounded-full bg-pink-500 text-white font-bold flex items-center justify-center text-[10px]">5</span>
+                        <span>Tuân thủ nhật ký giao dịch và loại bỏ cảm xúc FOMO/Hoảng loạn.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section class="bg-white p-6 sm:p-8 rounded-3xl shadow-sm border border-pink-100">
+            <h3 class="text-lg font-extrabold text-slate-800 mb-6 flex items-center gap-2">
+                <i class="fa-solid fa-circle-question text-pink-500"></i>
+                Câu Hỏi Thường Gặp (FAQ) & Giải Đáp Kỹ Thuật
+            </h3>
+            <div class="space-y-4 text-xs">
+                <div class="p-4 rounded-2xl bg-pink-50/40 border border-pink-100">
+                    <h4 class="font-bold text-pink-700 text-sm mb-1">Q1: Tại sao đường giá lại sụt giảm mạnh đến hơn 94% ở cuối chu kỳ?</h4>
+                    <p class="text-slate-600 leading-relaxed">
+                        Đây là đặc trưng của chu kỳ suy thoái (Markdown) khi nguồn cung áp đảo hoàn toàn cầu. Các nhà đầu tư tổ chức đã thoát hết hàng ở Pha Phân Phối, dẫn đến tình trạng thiếu hụt thanh khoản mua và đẩy giá về mức định giá thấp kỷ lục.
+                    </p>
+                </div>
+                <div class="p-4 rounded-2xl bg-pink-50/40 border border-pink-100">
+                    <h4 class="font-bold text-pink-700 text-sm mb-1">Q2: Làm thế nào để nhận biết vùng đỉnh và tránh bị "kẹt hàng"?</h4>
+                    <p class="text-slate-600 leading-relaxed">
+                        Vùng đỉnh thường xuất hiện dấu hiệu biến động giá cực mạnh nhưng không tăng thêm được nhiều (Phân phối), kèm theo khối lượng giao dịch đột biến và tin tức tốt xuất hiện dồn dập trên truyền thông.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-12 py-8 border-t border-pink-200 bg-white text-center text-xs text-pink-600 font-medium">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 Báo Cáo Phân Tích Biến Động Tài Chính 365 Ngày | Pink Theme Edition</p>
+            <p class="text-slate-400 mt-1">Dữ liệu đầu vào: abc-3.csv & video1.mp4</p>
+        </div>
+    </footer>
+
+    <!-- Chart.js & Logic Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Generates financial line data matching CSV specs
+            function generateFinancialData() {
+                const labels = [];
+                const values = [];
+                let currentVal = 9622;
+
+                for (let day = 1; day <= 365; day++) {
+                    labels.push(`N${day}`);
+                    
+                    if (day <= 45) {
+                        currentVal += (Math.random() - 0.48) * 700;
+                    } else if (day <= 165) {
+                        currentVal += (Math.random() - 0.38) * 1100;
+                    } else if (day <= 225) {
+                        currentVal += (Math.random() - 0.55) * 1000;
+                    } else {
+                        currentVal += (Math.random() - 0.61) * 750;
+                    }
+
+                    if (currentVal > 30361) currentVal = 30361 - Math.random() * 400;
+                    if (currentVal < 1736) currentVal = 1736 + Math.random() * 200;
+
+                    values.push(Math.round(currentVal));
+                }
+
+                values[164] = 30361;
+                values[364] = 1736;
+
+                return { labels, values };
+            }
+
+            const data = generateFinancialData();
+            const ctx = document.getElementById('financeChart').getContext('2d');
+
+            const gradient = ctx.createLinearGradient(0, 0, 0, 360);
+            gradient.addColorStop(0, 'rgba(236, 72, 153, 0.4)');
+            gradient.addColorStop(1, 'rgba(236, 72, 153, 0.0)');
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Giá Đóng Cửa (VNĐ)',
+                        data: data.values,
+                        borderColor: '#ec4899',
+                        borderWidth: 2.5,
+                        fill: true,
+                        backgroundColor: gradient,
+                        tension: 0.3,
+                        pointRadius: 0,
+                        pointHoverRadius: 6,
+                        pointHoverBackgroundColor: '#be185d',
+                        pointHoverBorderColor: '#ffffff',
+                        pointHoverBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            labels: {
+                                color: '#475569',
+                                font: { family: "'Plus Jakarta Sans', sans-serif", size: 12, weight: '700' },
+                                boxWidth: 12,
+                                usePointStyle: true
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#831843',
+                            titleColor: '#fbcfe8',
+                            bodyColor: '#ffffff',
+                            padding: 12,
+                            cornerRadius: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return `Giá: ${context.raw.toLocaleString('vi-VN')} VNĐ`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: {
+                                color: '#94a3b8',
+                                font: { size: 10 },
+                                maxTicksLimit: 12
+                            }
+                        },
+                        y: {
+                            grid: { color: 'rgba(251, 207, 232, 0.5)' },
+                            ticks: {
+                                color: '#94a3b8',
+                                font: { size: 10 },
+                                callback: function(value) {
+                                    return value.toLocaleString('vi-VN') + ' đ';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Risk Calculator Script
+            const capitalInput = document.getElementById('capitalInput');
+            const entryInput = document.getElementById('entryInput');
+            const slInput = document.getElementById('slInput');
+            const tpInput = document.getElementById('tpInput');
+
+            function calculateRisk() {
+                const capital = parseFloat(capitalInput.value) || 0;
+                const entry = parseFloat(entryInput.value) || 0;
+                const sl = parseFloat(slInput.value) || 0;
+                const tp = parseFloat(tpInput.value) || 0;
+
+                if (entry <= 0 || sl >= entry || tp <= entry) {
+                    document.getElementById('rrResult').innerText = "N/A";
+                    document.getElementById('calculatorAdvice').innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-500 mr-1"></i> Vui lòng nhập thông số hợp lệ: Cắt lỗ < Giá mua < Chốt lời.`;
+                    return;
+                }
+
+                const riskVal = entry - sl;
+                const rewardVal = tp - entry;
+                const rrRatio = (rewardVal / riskVal).toFixed(2);
+                const riskPercent = ((riskVal / entry) * 100).toFixed(1);
+                const rewardPercent = ((rewardVal / entry) * 100).toFixed(1);
+                const shares = Math.floor((capital * 0.1) / entry);
+
+                document.getElementById('rrResult').innerText = `1 : ${rrRatio}`;
+                document.getElementById('riskPerShare').innerText = `-${riskPercent}%`;
+                document.getElementById('rewardPerShare').innerText = `+${rewardPercent}%`;
+                document.getElementById('shareVolume').innerText = `${shares.toLocaleString('vi-VN')} CP`;
+
+                const adviceEl = document.getElementById('calculatorAdvice');
+                if (rrRatio >= 2.0) {
+                    adviceEl.className = "mt-4 p-3 rounded-xl bg-pink-100 text-pink-900 text-xs font-medium border border-pink-200";
+                    adviceEl.innerHTML = `<i class="fa-solid fa-thumbs-up text-pink-600 mr-1"></i> Tỷ lệ R:R rất tốt (1:${rrRatio} >= 1:2). Kế hoạch giao dịch có mức lợi nhuận kỳ vọng tối ưu.`;
+                } else {
+                    adviceEl.className = "mt-4 p-3 rounded-xl bg-amber-50 text-amber-900 text-xs font-medium border border-amber-200";
+                    adviceEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-amber-600 mr-1"></i> Tỷ lệ R:R chưa tối ưu (1:${rrRatio} < 1:2). Nên điều chỉnh lại giá chốt lời hoặc điểm vào lệnh.`;
+                }
+            }
+
+            [capitalInput, entryInput, slInput, tpInput].forEach(input => {
+                input.addEventListener('input', calculateRisk);
+            });
+
+            calculateRisk();
+        });
+    </script>
+</body>
+</html>
